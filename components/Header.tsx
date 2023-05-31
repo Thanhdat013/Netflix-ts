@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/useAuth"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -5,7 +6,7 @@ import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai"
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
-
+  const { logout } = useAuth()
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -22,12 +23,12 @@ function Header() {
   return (
     <header className={`${isScrolled && "bg-[#141414] "}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
-        <img
-          src="https://rb.gy/ulxxee"
+        <Image
+          src="https://res.cloudinary.com/dwgwlmu6i/image/upload/v1685522790/Netflix/Netflix_2015_logo_regcgg.svg"
           alt="Logo"
           width={100}
           height={100}
-          className="cursor-pointer object-cover"
+          className="cursor-pointer object-cover "
         />
 
         <ul className="hidden space-x-4 md:flex items-center">
@@ -43,9 +44,10 @@ function Header() {
         <AiOutlineSearch className="hidden sm:inline h-6 w-6" />
         <p className="hidden lg:inline">Kids</p>
         <AiOutlineBell className="w-6 h-6 " />
+
         <Link href="/account">
-          <img
-            src="https://rb.gy/g1pwyx"
+          <Image
+            src="https://res.cloudinary.com/dwgwlmu6i/image/upload/v1685522841/Netflix/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo_nym0xh.png"
             alt="account"
             width={20}
             height={20}

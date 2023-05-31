@@ -11,7 +11,7 @@ body {
     @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-gray-400;
   }
   header {
-    @apply fixed z-50  top-0 flex w-full items-center justify-between  px-4 py-4 transition-all lg:px-10 lg:py-6;
+    @apply fixed z-50  top-0 flex w-full items-center justify-between  px-4 py-4 transition lg:px-10 lg:py-6;
   }
 }
 
@@ -21,5 +21,9 @@ body {
   }
   .bannerButton {
     @apply cursor-pointer flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+  }
+
+  .input {
+    @apply w-full rounded bg-[#333] pl-5 pr-8 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545];
   }
 }

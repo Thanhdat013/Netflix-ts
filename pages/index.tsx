@@ -1,6 +1,7 @@
 import { Banner, Header, Row } from "@/components"
 import { Movie } from "@/models"
 import requests from "@/utils/requests"
+import Head from "next/head"
 
 interface Props {
   netflixOriginals: Movie[]
@@ -25,6 +26,12 @@ export default function Home({
 }: Props) {
   return (
     <div className=" h-screen relative bg-gradient-to-b from-gray-900/10 to-[#010511]">
+      {/* SEO */}
+      <Head>
+        <title>Home-Netflix</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Header />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pb-16">
         <Banner netflixOriginals={netflixOriginals} />
