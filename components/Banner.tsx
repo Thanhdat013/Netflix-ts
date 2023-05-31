@@ -1,10 +1,11 @@
+import { modalState, movieState } from "@/atoms/modalAtom"
 import { baseUrl } from "@/constants/movie"
 import { Movie } from "@/models"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { FaPlay } from "react-icons/fa"
 import { IoInformationCircle } from "react-icons/io5"
-
+import { useRecoilState } from "recoil"
 interface Props {
   netflixOriginals: Movie[]
 }
@@ -18,6 +19,10 @@ function Banner({ netflixOriginals }: Props) {
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
     )
   }, [netflixOriginals])
+
+  const [showModal, setShowModal] = useRecoilState(modalState)
+  const [showCurrentMovie, setShowCurrentMovie] = useRecoilState(movieState)
+
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
       <div className="absolute -z-10 top-0 left-0 h-[95vh] w-full">
@@ -40,10 +45,18 @@ function Banner({ netflixOriginals }: Props) {
           <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" />
           Play
         </button>
-        <button className="bannerButton bg-[gray]/70">
+        <button
+          className="bannerButton bg-[gray]/70"
+          onClick={() => {
+            setShowModal(true)
+            setShowCurrentMovie(movie)
+          }}
+        >
           Move Info
           <IoInformationCircle className="h-5 w-5 text-white md:h-7 md:w-7" />
         </button>
+
+        <div></div>
       </div>
     </div>
   )

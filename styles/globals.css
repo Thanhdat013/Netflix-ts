@@ -26,4 +26,8 @@ body {
   .input {
     @apply w-full rounded bg-[#333] pl-5 pr-8 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545];
   }
+
+  .modalButton {
+    @apply flex items-center h-11 w-11  justify-center rounded-full border-2 cursor-pointer border-[gray] bg-[#2a2a2a]/60  transition duration-100 hover:border-white hover:bg-white/10;
+  }
 }
