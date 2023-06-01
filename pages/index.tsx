@@ -1,11 +1,12 @@
 import { modalState } from "@/atoms/modalAtom"
 import { Banner, Header, ModalPreview, Plans, Row } from "@/components"
 import useAuth from "@/hooks/useAuth"
+import useSubscription from "@/hooks/useSubscription"
 import payments from "@/lib/stripe"
 import { Movie } from "@/models"
 import requests from "@/utils/requests"
 import { Product, getProducts } from "@stripe/firestore-stripe-payments"
-import { error } from "console"
+
 import Head from "next/head"
 import { useRecoilValue } from "recoil"
 
@@ -33,9 +34,9 @@ export default function Home({
   products,
 }: Props) {
   console.log(products)
-  const { loading } = useAuth()
+  const { loading, user } = useAuth()
   const showModal = useRecoilValue(modalState)
-  const subscription = false
+  const subscription = useSubscription(user)
 
   if (loading || subscription === null) return null
   if (!subscription) return <Plans products={products} />
