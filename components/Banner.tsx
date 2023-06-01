@@ -31,6 +31,7 @@ function Banner({ netflixOriginals }: Props) {
           alt="banner"
           style={{ objectFit: "cover" }}
           fill
+          priority
         />
       </div>
       <h1 className="text-2xl lg:text-7xl md:text-4xl font-bold">

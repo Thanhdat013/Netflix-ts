@@ -1,6 +1,7 @@
-import { modalState } from "@/atoms/modalAtom"
+import { modalState, movieState } from "@/atoms/modalAtom"
 import { Banner, Header, ModalPreview, Plans, Row } from "@/components"
 import useAuth from "@/hooks/useAuth"
+import useList from "@/hooks/useList"
 import useSubscription from "@/hooks/useSubscription"
 import payments from "@/lib/stripe"
 import { Movie } from "@/models"
@@ -33,10 +34,11 @@ export default function Home({
   documentaries,
   products,
 }: Props) {
-  console.log(products)
   const { loading, user } = useAuth()
   const showModal = useRecoilValue(modalState)
   const subscription = useSubscription(user)
+  const movie = useRecoilValue(movieState)
+  const list = useList(user?.uid)
 
   if (loading || subscription === null) return null
   if (!subscription) return <Plans products={products} />
@@ -59,7 +61,8 @@ export default function Home({
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
-
+          {/* My List Component */}
+          {list.length > 0 && <Row title="My List" movies={list} />}
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />

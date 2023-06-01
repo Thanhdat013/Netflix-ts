@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai"
+import MenuMobile from "./MenuMobile"
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
@@ -30,6 +31,8 @@ function Header() {
           height={100}
           className="cursor-pointer object-cover "
         />
+
+        <MenuMobile />
 
         <ul className="hidden space-x-4 md:flex items-center">
           <li className="headerLink">Home</li>
