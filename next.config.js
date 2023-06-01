@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // pass the modules you world like to see transpiled
+  transpilePackages: [
+    "@acme/ui",
+    "lodash-es",
+    "@stripe/firestore-stripe-payments",
+  ],
   images: {
     remotePatterns: [
       {

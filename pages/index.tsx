@@ -1,8 +1,11 @@
 import { modalState } from "@/atoms/modalAtom"
-import { Banner, Header, ModalPreview, Row } from "@/components"
+import { Banner, Header, ModalPreview, Plans, Row } from "@/components"
 import useAuth from "@/hooks/useAuth"
+import payments from "@/lib/stripe"
 import { Movie } from "@/models"
 import requests from "@/utils/requests"
+import { Product, getProducts } from "@stripe/firestore-stripe-payments"
+import { error } from "console"
 import Head from "next/head"
 import { useRecoilValue } from "recoil"
 
@@ -15,6 +18,7 @@ interface Props {
   horrorMovies: Movie[]
   romanceMovies: Movie[]
   documentaries: Movie[]
+  products: Product[]
 }
 
 export default function Home({
@@ -26,13 +30,21 @@ export default function Home({
   horrorMovies,
   romanceMovies,
   documentaries,
+  products,
 }: Props) {
+  console.log(products)
   const { loading } = useAuth()
   const showModal = useRecoilValue(modalState)
+  const subscription = false
 
-  if (loading) return null
+  if (loading || subscription === null) return null
+  if (!subscription) return <Plans products={products} />
   return (
-    <div className=" h-screen relative bg-gradient-to-b from-gray-900/10 to-[#010511]">
+    <div
+      className={`h-screen relative bg-gradient-to-b from-gray-900/10 to-[#010511] ${
+        showModal && "!h-screen overflow-hidden"
+      }`}
+    >
       {/* SEO */}
       <Head>
         <title>Home-Netflix</title>
@@ -79,6 +91,14 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
   ])
 
+  // get all products in plan
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => console.log(error.message))
+
   return {
     props: {
       netflixOriginals: netflixOriginals.results,
@@ -89,6 +109,8 @@ export const getServerSideProps = async () => {
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
+
+      products,
     },
   }
 }
