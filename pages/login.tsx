@@ -31,7 +31,7 @@ const Login = (props: Props) => {
     }
   }
   return (
-    <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
+    <div className="relative flex h-screen w-screen flex-col items-center md:justify-center md:bg-transparent">
       <Head>
         <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
@@ -41,7 +41,7 @@ const Login = (props: Props) => {
         alt="bgi"
         fill
         style={{ objectFit: "cover" }}
-        className="-z-10 !hidden opacity-60 sm:!inline"
+        className="-z-10  opacity-60 "
       />
       <Link href={"/"}>
         <Image

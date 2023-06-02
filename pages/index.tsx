@@ -1,6 +1,7 @@
 import { modalState, movieState } from "@/atoms/modalAtom"
-import { Banner, Header, ModalPreview, Plans, Row } from "@/components"
-import { MainLayout } from "@/components/layout"
+import { Plans } from "@/components"
+import { Banner, Footer, Header, ModalPreview, Row } from "@/components/commons"
+import { EmptyHome } from "@/components/home"
 import useAuth from "@/hooks/useAuth"
 import useList from "@/hooks/useList"
 import useSubscription from "@/hooks/useSubscription"
@@ -41,7 +42,7 @@ export default function Home({
   const movie = useRecoilValue(movieState)
   const list = useList(user?.uid)
 
-  if (loading || subscription === null) return null
+  if (loading || subscription === null) return <EmptyHome />
   if (!subscription) return <Plans products={products} />
   return (
     <div
@@ -54,8 +55,7 @@ export default function Home({
         <title>Home-Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/* <Header /> */}
+      <Header />
       <main className="relative pl-4 pb-12 lg:space-y-24 lg:pb-6">
         <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-24">
@@ -70,6 +70,7 @@ export default function Home({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
+      <Footer />
       {showModal && <ModalPreview />}
     </div>
   )
@@ -120,4 +121,4 @@ export const getServerSideProps = async () => {
   }
 }
 
-Home.Layout = MainLayout
+// Home.Layout = MainLayout

@@ -19,8 +19,8 @@ import {
 import useAuth from "@/hooks/useAuth"
 import { db } from "@/firebase"
 import toast, { Toaster } from "react-hot-toast"
-interface Props {}
-const ModalPreview = (props: Props) => {
+
+const ModalPreview = () => {
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [movie, setMovie] = useRecoilState(movieState)
   const [trailer, setTrailer] = useState<string>("")

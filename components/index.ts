@@ -1,8 +1,3 @@
-export { default as Banner } from "./Banner"
-export { default as Header } from "./commons/Header"
-export { default as Row } from "./Row"
-export { default as Thumbnail } from "./Thumbnail"
-export { default as ModalPreview } from "./ModalPreview"
 export { default as Plans } from "./Plans"
 export { default as PriceOption } from "./PriceOption"
 export { default as Loader } from "./Loader"
