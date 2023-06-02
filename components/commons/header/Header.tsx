@@ -53,8 +53,6 @@ function Header() {
               </li>
             </Link>
           ))}
-
-          <li className="headerLink">My list</li>
         </ul>
       </div>
 

@@ -56,7 +56,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="relative pl-4 pb-12 lg:space-y-24 lg:pb-6">
+      <main className="relative px-10 pb-12 lg:space-y-24 lg:pb-6">
         <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-24">
           <Row title="Trending Now" movies={trendingNow} />

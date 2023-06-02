@@ -33,7 +33,7 @@ function Show({
         <title>Genre-Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="relative pl-4 pb-12 lg:space-y-24 lg:pb-6">
+      <main className="relative px-10 pb-12 lg:space-y-24 lg:pb-6">
         <Banner netflixOriginals={popularNetflix} />
         <section className="md:space-y-24">
           <Row title="Tv&show Popular on Netflix" movies={popularNetflix} />

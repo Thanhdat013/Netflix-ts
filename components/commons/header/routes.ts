@@ -15,4 +15,8 @@ export const ROUTE_LIST = [
     label: "New & Popular",
     path: "/new",
   },
+  {
+    label: "My list",
+    path: "/my-list",
+  },
 ]

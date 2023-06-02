@@ -4,7 +4,7 @@ import Thumbnail from "./Thumbnail"
 import { useRef, useState } from "react"
 import { DocumentData } from "@firebase/firestore"
 interface Props {
-  title: string
+  title?: string
   movies: Movie[] | DocumentData[]
 }
 
