@@ -13,7 +13,6 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
   const router = useRouter()
   const { user } = useAuth()
-  console.log(user)
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {

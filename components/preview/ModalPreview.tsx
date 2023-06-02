@@ -40,6 +40,7 @@ const ModalPreview = () => {
 
   useEffect(() => {
     if (!movie) return
+    console.log(movie)
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -50,6 +51,7 @@ const ModalPreview = () => {
       ).then((res) => res.json())
 
       if (data?.videos) {
+        console.log(data)
         const index = data.videos.results.findIndex(
           (element: Element) => element.type === "Trailer"
         )

@@ -1,4 +1,3 @@
-import { MembershipInfo } from "@/components"
 import useAuth from "@/hooks/useAuth"
 import useSubscription from "@/hooks/useSubscription"
 import payments from "@/lib/stripe"
@@ -9,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import { MainLayout } from "@/components/layout"
+import { MembershipInfo } from "@/components/account"
 
 type Props = {
   products: Product[]
