@@ -8,6 +8,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
+import { MainLayout } from "@/components/layout"
 
 type Props = {
   products: Product[]
@@ -107,3 +108,5 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
+
+// Account.Layout = MainLayout

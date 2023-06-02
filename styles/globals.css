@@ -17,7 +17,7 @@ body {
 
 @layer components {
   .headerLink {
-    @apply cursor-pointer text-sm font-light text-white transition duration-200 hover:text-[#b3b3b3];
+    @apply cursor-pointer text-sm font-medium text-white transition duration-200 hover:text-[#b3b3b3];
   }
   .bannerButton {
     @apply cursor-pointer flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;

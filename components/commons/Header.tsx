@@ -3,11 +3,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai"
-import MenuMobile from "./MenuMobile"
+import MenuMobile from "../MenuMobile"
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
-  const { logout } = useAuth()
+  const { logout, user } = useAuth()
+  console.log(user)
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -45,7 +46,7 @@ function Header() {
 
       <div className="flex items-center gap-4 text-sm font-light">
         <AiOutlineSearch className="hidden sm:inline h-6 w-6" />
-        <p className="hidden lg:inline">Kids</p>
+        <p className="hidden lg:inline">{user?.email}</p>
         <AiOutlineBell className="w-6 h-6 " />
 
         <Link href="/account">

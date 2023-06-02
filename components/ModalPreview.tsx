@@ -50,11 +50,10 @@ const ModalPreview = (props: Props) => {
       ).then((res) => res.json())
 
       if (data?.videos) {
-        console.log(data)
         const index = data.videos.results.findIndex(
           (element: Element) => element.type === "Trailer"
         )
-        console.log(index)
+
         if (index > -1) setTrailer(data.videos.results[index]?.key)
       }
       if (data?.genres) setGenres(data.genres)

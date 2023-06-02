@@ -1,5 +1,6 @@
 import { modalState, movieState } from "@/atoms/modalAtom"
 import { Banner, Header, ModalPreview, Plans, Row } from "@/components"
+import { MainLayout } from "@/components/layout"
 import useAuth from "@/hooks/useAuth"
 import useList from "@/hooks/useList"
 import useSubscription from "@/hooks/useSubscription"
@@ -44,7 +45,7 @@ export default function Home({
   if (!subscription) return <Plans products={products} />
   return (
     <div
-      className={`h-screen relative bg-gradient-to-b from-gray-900/10 to-[#010511] ${
+      className={`h-full relative bg-gradient-to-b from-gray-900/10 to-[#010511] ${
         showModal && "!h-screen overflow-hidden"
       }`}
     >
@@ -54,8 +55,8 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pb-16">
+      {/* <Header /> */}
+      <main className="relative pl-4 pb-12 lg:space-y-24 lg:pb-6">
         <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-24">
           <Row title="Trending Now" movies={trendingNow} />
@@ -118,3 +119,5 @@ export const getServerSideProps = async () => {
     },
   }
 }
+
+Home.Layout = MainLayout
