@@ -1,5 +1,0 @@
-export { default as Plans } from "./Plans"
-export { default as PriceOption } from "./PriceOption"
-export { default as Loader } from "./Loader"
-export { default as MembershipInfo } from "./MembershipInfo"
-export { default as MenuMobile } from "./MenuMobile"

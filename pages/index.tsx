@@ -1,7 +1,11 @@
 import { modalState, movieState } from "@/atoms/modalAtom"
-import { Plans } from "@/components"
-import { Banner, Footer, Header, ModalPreview, Row } from "@/components/commons"
+
+import { Header } from "@/components/commons/header"
+import Footer from "@/components/commons/footer"
 import { EmptyHome } from "@/components/home"
+import { Plans } from "@/components/plans"
+import { ModalPreview } from "@/components/preview"
+import { Banner, Row } from "@/components/slide"
 import useAuth from "@/hooks/useAuth"
 import useList from "@/hooks/useList"
 import useSubscription from "@/hooks/useSubscription"

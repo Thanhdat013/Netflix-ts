@@ -1,6 +1,7 @@
 import { modalState } from "@/atoms/modalAtom"
-import { Banner, ModalPreview, Row } from "@/components/commons"
+import { Banner, Row } from "@/components/slide"
 import { MainLayout } from "@/components/layout"
+import { ModalPreview } from "@/components/preview"
 import { Movie } from "@/models"
 import requests from "@/utils/requests"
 import Head from "next/head"

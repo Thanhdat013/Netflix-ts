@@ -1,7 +1,0 @@
-export { default as Header } from "./header/Header"
-export { default as Footer } from "./Footer"
-export { default as HeaderMenu } from "./HeaderMenu"
-export { default as Banner } from "./Banner"
-export { default as Row } from "./Row"
-export { default as ModalPreview } from "./ModalPreview"
-export { default as Thumbnail } from "./Thumbnail"

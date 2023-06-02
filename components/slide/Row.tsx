@@ -1,8 +1,9 @@
 import { Movie } from "@/models"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import Thumbnail from "./Thumbnail"
+
 import { useRef, useState } from "react"
 import { DocumentData } from "@firebase/firestore"
+import { Thumbnail } from "../preview"
 interface Props {
   title?: string
   movies: Movie[] | DocumentData[]

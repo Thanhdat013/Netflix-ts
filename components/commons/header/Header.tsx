@@ -3,10 +3,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai"
-import MenuMobile from "../../MenuMobile"
-import HeaderMenu from "../HeaderMenu"
+
 import { ROUTE_LIST } from "./routes"
 import { useRouter } from "next/router"
+import MenuMobile from "./MenuMobile"
+import HeaderMenu from "./HeaderMenu"
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)

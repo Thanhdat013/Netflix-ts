@@ -1,6 +1,7 @@
 import { modalState, movieState } from "@/atoms/modalAtom"
-import { ModalPreview, Row } from "@/components/commons"
+import { Row } from "@/components/slide"
 import { MainLayout } from "@/components/layout"
+import { ModalPreview } from "@/components/preview"
 import useAuth from "@/hooks/useAuth"
 import useList from "@/hooks/useList"
 import Head from "next/head"

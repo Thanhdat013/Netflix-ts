@@ -1,8 +1,9 @@
 import useAuth from "@/hooks/useAuth"
-import Loader from "./Loader"
+
 import useSubscription from "@/hooks/useSubscription"
 import { useState } from "react"
 import { goToBillingPortal } from "@/lib/stripe"
+import Loader from "../loading"
 const MembershipInfo = () => {
   const { user } = useAuth()
   const subscription = useSubscription(user)

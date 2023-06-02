@@ -9,7 +9,8 @@ import PriceOption from "./PriceOption"
 import { useState } from "react"
 
 import { loadCheckout } from "@/lib/stripe"
-import Loader from "./Loader"
+import Loader from "../loading"
+
 interface Props {
   products: Product[]
 }

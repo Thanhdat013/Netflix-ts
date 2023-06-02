@@ -1,7 +1,6 @@
-import { Box, Stack } from "@mui/material"
-
+import Footer from "@/components/commons/footer"
+import { Header } from "@/components/commons/header"
 import { LayoutProps } from "@/models"
-import { Footer, Header } from "../commons"
 
 export function MainLayout({ children }: LayoutProps) {
   return (
