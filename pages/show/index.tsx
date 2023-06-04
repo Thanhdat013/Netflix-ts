@@ -6,7 +6,7 @@ import { Movie } from "@/models"
 import requests from "@/utils/requests"
 import Head from "next/head"
 import { useRecoilValue } from "recoil"
-
+import { useState } from "react"
 interface Props {
   crimeShow: Movie[]
   fantasyShow: Movie[]
@@ -22,8 +22,10 @@ function Show({
   news,
   popularNetflix,
 }: Props) {
+  const handelDetail = (id: string) => {
+    console.log("current movie id", id)
+  }
   const showModal = useRecoilValue(modalState)
-
   return (
     <div
       className={`h-full relative bg-gradient-to-b from-gray-900/10 to-[#010511] ${
@@ -44,7 +46,7 @@ function Show({
           <Row title="Crime" movies={crimeShow} />
         </section>
       </main>
-      {showModal && <ModalPreview />}
+      {showModal && <ModalPreview handelDetail={handelDetail} />}
     </div>
   )
 }

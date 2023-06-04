@@ -1,7 +1,11 @@
 import { NextPage } from "next"
 import { ReactElement, ReactNode } from "react"
-import { AppProps } from 'next/app'
+import { AppProps } from "next/app"
 export interface Genre {
+  id: number
+  name: string
+}
+export interface ProductCompany {
   id: number
   name: string
 }

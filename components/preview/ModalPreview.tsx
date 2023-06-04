@@ -19,15 +19,18 @@ import {
 import useAuth from "@/hooks/useAuth"
 import { db } from "@/firebase"
 import toast, { Toaster } from "react-hot-toast"
+import { useRouter } from "next/router"
 
-const ModalPreview = () => {
+const ModalPreview = ({ handelDetail }: any) => {
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [movie, setMovie] = useRecoilState(movieState)
   const [trailer, setTrailer] = useState<string>("")
+  const [movieId, setMovieId] = useState<string>("")
   const [genres, setGenres] = useState<Genre[]>([])
-  const [muted, setMuted] = useState<boolean>(false)
+  const [muted, setMuted] = useState<boolean>(true)
   const { user } = useAuth()
   const [moviesList, setMoviesList] = useState<DocumentData[] | Movie[]>([])
+  const router = useRouter()
   const toastStyle = {
     background: "white",
     color: "black",
@@ -40,7 +43,6 @@ const ModalPreview = () => {
 
   useEffect(() => {
     if (!movie) return
-    console.log(movie)
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -50,8 +52,8 @@ const ModalPreview = () => {
         }&language=en-US&append_to_response=videos`
       ).then((res) => res.json())
 
-      if (data?.videos) {
-        console.log(data)
+      if (data && data?.videos) {
+        setMovieId(data.id)
         const index = data.videos.results.findIndex(
           (element: Element) => element.type === "Trailer"
         )
@@ -118,6 +120,16 @@ const ModalPreview = () => {
       ),
     [moviesList]
   )
+  const handlePlayMovie = () => {
+    setMovieId(movie?.id)
+    console.log(movie?.id)
+    router.push({
+      pathname: "/detail-movie/[id]",
+      query: {
+        id: movieId,
+      },
+    })
+  }
 
   return (
     <Modal
@@ -146,7 +158,10 @@ const ModalPreview = () => {
 
           <div className="absolute bottom-8 flex w-full items-center justify-between px-10 ">
             <div className="flex space-x-2">
-              <button className="flex items-center gap-x-2 bg-white text-black rounded px-8 text-xl font-bold transition hover:bg-[#e6e6e6]">
+              <button
+                onClick={handlePlayMovie}
+                className="flex items-center gap-x-2 bg-white text-black rounded px-8 text-xl font-bold transition hover:bg-[#e6e6e6]"
+              >
                 <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" />
                 Play
               </button>
