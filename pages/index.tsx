@@ -51,7 +51,7 @@ export default function Home({
   return (
     <div
       className={`h-full relative bg-gradient-to-b from-gray-900/10 to-[#010511] ${
-        showModal && "!h-screen overflow-hidden"
+        showModal && "!h-full overflow-hidden"
       }`}
     >
       {/* SEO */}

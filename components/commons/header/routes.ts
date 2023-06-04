@@ -9,7 +9,7 @@ export const ROUTE_LIST = [
   },
   {
     label: "Movie",
-    path: "/genre",
+    path: "/movie",
   },
   {
     label: "New & Popular",
