@@ -46,7 +46,7 @@ function Show({
           <Row title="Crime" movies={crimeShow} />
         </section>
       </main>
-      {showModal && <ModalPreview handelDetail={handelDetail} />}
+      {showModal && <ModalPreview />}
     </div>
   )
 }
@@ -56,11 +56,11 @@ export default Show
 export const getServerSideProps = async () => {
   const [crimeShow, fantasyShow, dramaShow, news, popularNetflix] =
     await Promise.all([
+      fetch(requests.fetchShowPopular).then((res) => res.json()),
       fetch(requests.fetchCrime).then((res) => res.json()),
       fetch(requests.fetchFantasy).then((res) => res.json()),
       fetch(requests.fetchDrama).then((res) => res.json()),
       fetch(requests.fetchNews).then((res) => res.json()),
-      fetch(requests.fetchShowPopular).then((res) => res.json()),
     ])
 
   return {

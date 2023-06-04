@@ -43,6 +43,7 @@ const ModalPreview = () => {
   }
 
   useEffect(() => {
+    console.log(movie)
     if (!movie) return
     async function fetchMovie() {
       const data = await fetch(

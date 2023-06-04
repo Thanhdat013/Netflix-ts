@@ -18,7 +18,7 @@ const requests = {
   fetchUpComing: `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
 
   // TV and show
-  fetchShowPopular: `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
+  fetchShowPopular: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=9648`,
   fetchCrime: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=80`,
   fetchDrama: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=18`,
   fetchNews: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10763`,
