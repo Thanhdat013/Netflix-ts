@@ -2,7 +2,7 @@ import { modalState, movieState } from "@/atoms/modalAtom"
 import { Genre, Movie, Element } from "@/models"
 import { Modal } from "@mui/material"
 import { useEffect, useState } from "react"
-import { AiOutlineClose } from "react-icons/ai"
+import { AiFillLike, AiOutlineClose } from "react-icons/ai"
 import ReactPlayer from "react-player"
 import { useRecoilState } from "recoil"
 import { FaCheck, FaPlay, FaPlus } from "react-icons/fa"
@@ -21,7 +21,7 @@ import { db } from "@/firebase"
 import toast, { Toaster } from "react-hot-toast"
 import { useRouter } from "next/router"
 
-const ModalPreview = ({ handelDetail }: any) => {
+const ModalPreview = () => {
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [movie, setMovie] = useRecoilState(movieState)
   const [trailer, setTrailer] = useState<string>("")
@@ -30,6 +30,7 @@ const ModalPreview = ({ handelDetail }: any) => {
   const [muted, setMuted] = useState<boolean>(true)
   const { user } = useAuth()
   const [moviesList, setMoviesList] = useState<DocumentData[] | Movie[]>([])
+  const [moviesLiked, setMoviesLiked] = useState<DocumentData[] | Movie[]>([])
   const router = useRouter()
   const toastStyle = {
     background: "white",
@@ -92,7 +93,6 @@ const ModalPreview = ({ handelDetail }: any) => {
         doc(db, "customers", user!.uid, "myList", movie?.id.toString()!),
         { ...movie }
       )
-
       toast(
         `${movie?.title || movie?.original_title} has been added to My List`,
         {
@@ -120,6 +120,58 @@ const ModalPreview = ({ handelDetail }: any) => {
       ),
     [moviesList]
   )
+
+  // set my movie like
+  const [addedToLiked, setAddedToLiked] = useState<boolean>(false)
+  const handleLiked = async () => {
+    if (addedToLiked) {
+      await deleteDoc(
+        doc(db, "customers", user!.uid, "myLiked", movie?.id.toString()!)
+      )
+
+      toast(
+        `${
+          movie?.title || movie?.original_title
+        } has been removed from My Liked`,
+        {
+          duration: 3000,
+          style: toastStyle,
+        }
+      )
+    } else {
+      await setDoc(
+        doc(db, "customers", user!.uid, "myLiked", movie?.id.toString()!),
+        { ...movie }
+      )
+      toast(
+        `${movie?.title || movie?.original_title} has been added to My Liked`,
+        {
+          duration: 3000,
+          style: toastStyle,
+        }
+      )
+    }
+  }
+
+  // Find all the movies in the user's liked
+  useEffect(() => {
+    if (user) {
+      return onSnapshot(
+        collection(db, "customers", user.uid, "myLiked"),
+        (snapshot) => setMoviesLiked(snapshot.docs)
+      )
+    }
+  }, [db, movie?.id])
+  // Check if the movie is already in the user's list
+  useEffect(
+    () =>
+      setAddedToLiked(
+        moviesLiked.findIndex((result) => result.data().id === movie?.id) !== -1
+      ),
+    [moviesLiked]
+  )
+
+  // navigate movie
   const handlePlayMovie = () => {
     setMovieId(movie?.id)
     console.log(movie?.id)
@@ -177,8 +229,15 @@ const ModalPreview = ({ handelDetail }: any) => {
                 )}
               </button>
 
-              <button className="modalButton hover:opacity-90">
-                <AiOutlineLike className="h-4 w-4 text-white md:h-7 md:w-7" />
+              <button
+                onClick={handleLiked}
+                className="modalButton hover:opacity-90"
+              >
+                {addedToLiked ? (
+                  <AiFillLike className="h-4 w-4 text-white md:h-7 md:w-7" />
+                ) : (
+                  <AiOutlineLike className="h-4 w-4 text-white md:h-7 md:w-7" />
+                )}
               </button>
             </div>
             <button
