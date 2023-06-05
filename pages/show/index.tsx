@@ -22,9 +22,6 @@ function Show({
   news,
   popularNetflix,
 }: Props) {
-  const handelDetail = (id: string) => {
-    console.log("current movie id", id)
-  }
   const showModal = useRecoilValue(modalState)
   return (
     <div
